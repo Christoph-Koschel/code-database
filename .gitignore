@@ -1,6 +1,5 @@
 .tsb
 .idea
 node_modules
-build
 lib
 tsconfig.json
