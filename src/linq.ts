@@ -94,8 +94,8 @@ function not<ItemType, ReturnType>(items: ItemType[], receiver: ReceiverCallback
 
 function constructConditionSection<ItemType, ReturnType>(items: ItemType[], expect: ExpectCallback<ItemType>, receiver: ReceiverCallback<ItemType, ReturnType>) {
     return {
-        where: (cb: ExecuteCallback<ItemType>) => where<ItemType, ReturnType>(items, cb, () => false, receiver),
-        until: (cb: ExecuteCallback<ItemType>) => until<ItemType, ReturnType>(items, cb, () => false, receiver)
+        where: (cb: ExecuteCallback<ItemType>) => where<ItemType, ReturnType>(items, cb, expect, receiver),
+        until: (cb: ExecuteCallback<ItemType>) => until<ItemType, ReturnType>(items, cb, expect, receiver)
     }
 }
 

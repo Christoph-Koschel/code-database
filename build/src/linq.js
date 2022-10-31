@@ -43,8 +43,8 @@ function not(items, receiver) {
 }
 function constructConditionSection(items, expect, receiver) {
     return {
-        where: (cb) => where(items, cb, () => false, receiver),
-        until: (cb) => until(items, cb, () => false, receiver)
+        where: (cb) => where(items, cb, expect, receiver),
+        until: (cb) => until(items, cb, expect, receiver)
     };
 }
 function where(items, cb, expect, receiver) {
