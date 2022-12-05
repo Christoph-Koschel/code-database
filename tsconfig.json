@@ -8,12 +8,12 @@
     "outDir": "build/src",
     "declarationDir": "build/header",
     "paths": {
-      "@yapm/*": ["./lib/*"]
+      "@yapm/*": [
+        "./lib/*"
+      ]
     }
-
   },
   "exclude": [
-    "lib",
-    "node_modules"
+    "lib"
   ]
 }
