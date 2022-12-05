@@ -1,6 +1,3 @@
-.tsb
 .idea
-node_modules
+build
 lib
-*.tsb
-tsconfig.json
