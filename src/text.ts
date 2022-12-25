@@ -117,7 +117,7 @@ export function formatNamed(tmp: string, values: { [name: string]: string }) {
                 }
 
                 if (Object.keys(values).includes(name)) {
-                    res += name;
+                    res += values[name];
                     i += j + 1;
                     continue;
                 } else {
