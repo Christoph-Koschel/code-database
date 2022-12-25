@@ -88,3 +88,49 @@ export function format(tmp: string, ...items: string[]): string {
 
     return res;
 }
+
+export function formatNamed(tmp: string, values: { [name: string]: string }) {
+    let chars = tmp.split("");
+    let res = "";
+
+    for (let i = 0; i < chars.length; i++) {
+        let char = chars[i];
+        if (char == "\\") {
+            if (chars[i + 1] == "{") {
+                res += chars[i + 1];
+                i++;
+                continue;
+            }
+        }
+        if (char == "{") {
+            if (chars[i + 1] == "{") {
+                let name: string = "";
+                let j: int = 2;
+                while (chars[i + j] != "}") {
+                    name += chars[i + j];
+                    j++;
+                }
+
+                if (chars[i + j + 1] != "}") {
+                    res += char;
+                    continue;
+                }
+
+                if (Object.keys(values).includes(name)) {
+                    res += name;
+                    i += j + 1;
+                    continue;
+                } else {
+                    res += char;
+                    continue;
+                }
+            }
+        }
+
+        res += char;
+    }
+
+    return res;
+}
+
+console.log(formatNamed("Today is a great {{place}}", {"place": "Day"}));
