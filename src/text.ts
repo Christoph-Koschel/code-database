@@ -1,6 +1,7 @@
-import {int} from "./symbols";
+import {char, int} from "./symbols";
+import {ReadStream} from "./stream";
 
-export function isNumber(char: string) {
+export function isNumber(char: string): boolean {
     if (typeof char !== 'string') {
         return false;
     }
@@ -10,6 +11,18 @@ export function isNumber(char: string) {
     }
 
     return !isNaN(Number(char));
+}
+
+export function isChar(obj: any): boolean {
+    if (typeof obj != "string") {
+        return false;
+    }
+
+    return obj.length == 1;
+}
+
+export function toCharArray(x: string): char[] {
+    return x.split("") as char[];
 }
 
 export function format(tmp: string, ...items: string[]): string {
@@ -131,4 +144,37 @@ export function formatNamed(tmp: string, values: { [name: string]: string }) {
     }
 
     return res;
+}
+
+export class TextAsynchroner {
+    private time: int;
+    private stream: ReadStream;
+    private pid: int | null;
+
+    public constructor(time: int, text: string, cb: { (c: char): void }) {
+        this.time = time;
+        this.stream = new ReadStream(toCharArray(text));
+        this.pid = null;
+        this.stream.on("data", (x: char) => {
+            cb(x);
+        });
+    }
+
+    public start() {
+        this.pid = setInterval(() => {
+            if (!this.stream.canRead()) {
+                this.stream.close();
+                clearInterval(this.pid);
+                return;
+            }
+
+            this.stream.read();
+        }, this.time);
+    }
+
+    public stop() {
+        if (this.pid != null) {
+            clearInterval(this.pid);
+        }
+    }
 }
