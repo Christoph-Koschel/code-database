@@ -4,7 +4,7 @@ export function rand(min: int, max: int): int {
     return Math.floor(Math.random() * (max - min)) + max as int;
 }
 
-export function randF(min:float, max: float): float {
+export function randF(min: float, max: float): float {
     return Math.floor(Math.random() * (max - min)) + max;
 }
 

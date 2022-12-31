@@ -132,5 +132,3 @@ export function formatNamed(tmp: string, values: { [name: string]: string }) {
 
     return res;
 }
-
-console.log(formatNamed("Today is a great {{place}}", {"place": "Day"}));
