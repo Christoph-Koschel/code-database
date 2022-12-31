@@ -16,3 +16,10 @@ export function isFloat(num: number): boolean {
     return !isInt(num);
 }
 
+export function RAD2DEG(x: float): float {
+    return x * Math.PI / 180;
+}
+
+export function DEG2RAD(x: float): float {
+    return x * 180 / Math.PI;
+}
